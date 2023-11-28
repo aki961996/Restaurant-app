@@ -107,7 +107,7 @@
                                 <label for="res_date" class="block text-sm font-medium leading-6 text-gray-900">
                                     Reservation Date</label>
                                 <div class="mt-2">
-                                    <input type="date" name="res_date" id="res_date" autocomplete="given-name"
+                                    <input type="datetime-local" name="res_date" id="res_date" autocomplete="given-name"
                                         class="block w-full mt-1">
                                 </div>
                                 @if ($errors->any())

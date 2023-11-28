@@ -24,4 +24,11 @@ class Table extends Model
         'status' => TableStatus::class,
         'location' => TableLocation::class
     ];
+
+    //relationships with reservation tabale , tables and reservation
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

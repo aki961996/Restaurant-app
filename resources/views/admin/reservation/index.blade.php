@@ -98,7 +98,7 @@
 
                             {{-- This time we need relation ship --}}
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{$res->table_id}}
+                                {{$res->table->name}}
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{$res->guest_number}}
@@ -125,9 +125,9 @@
                 </table>
             </div>
             <div class="">
-            
+
                 {!! $reservations->links() !!}
-            
+
             </div>
         </div>
     </div>

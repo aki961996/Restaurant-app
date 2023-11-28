@@ -26,6 +26,7 @@ class TableStore extends FormRequest
             'guest_number' => 'required',
             'status' => 'required',
             'location' => 'required',
+            
         ];
     }
 }

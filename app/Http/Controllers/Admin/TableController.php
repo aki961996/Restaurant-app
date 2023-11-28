@@ -16,8 +16,10 @@ class TableController extends Controller
     public function index()
     {
 
-        $tables = Table::latest()->paginate(5);;
-        return view('admin.table.index', ['tables' => $tables]);
+
+        $tables = Table::latest()->paginate(5);
+        $table = Table::all();
+        return view('admin.table.index', ['tables' => $tables, 'awsed'=>$table]);
     }
 
     /**

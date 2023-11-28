@@ -76,7 +76,7 @@
                                 <div class="mt-1">
                                     <select id="table_id" name="table_id" class="form-multiselect block w-full mt-1">
                                         @foreach ($tables as $table)
-                                        <option value="{{$table->id}} @selected($reservations->table_id == $table->id)">
+                                        <option value="{{$table->id}}" @selected($reservations->table_id == $table->id)>
                                             {{$table->name}}</option>
                                         @endforeach
 

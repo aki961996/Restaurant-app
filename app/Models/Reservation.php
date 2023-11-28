@@ -15,11 +15,14 @@ class Reservation extends Model
         'last_name',
         'email',
         'tel_number',
-
         'res_date',
         'guest_number',
         'table_id'
 
+    ];
+
+    protected  $dates = [
+        'res_date'
     ];
 
 
@@ -30,4 +33,11 @@ class Reservation extends Model
     }
 
     protected $appends = ['res_date_formated'];
+
+    //relation ships with reservation belonsto table 
+    //belongs to avubho singular. so table not tables ss
+    public function table()
+    {
+        return $this->belongsTo(Table::class);
+    }
 }

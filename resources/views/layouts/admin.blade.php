@@ -20,6 +20,9 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    {{--
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+
 
 </head>
 
@@ -130,6 +133,9 @@
             {{ $slot }}
         </main>
     </div>
+
+
+    {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
 </body>
 
 </html>

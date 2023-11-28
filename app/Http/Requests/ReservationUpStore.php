@@ -28,6 +28,7 @@ class ReservationUpStore extends FormRequest
             'tel_number' => ['required'],
             // 'res_date_formated' => ['required'],
             //'res_date_formated' => ['required'],
+            'table_id' => ['required'],
             'guest_number' => ['required'],
         ];
     }

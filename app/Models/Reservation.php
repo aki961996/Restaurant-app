@@ -29,7 +29,7 @@ class Reservation extends Model
     //etth  oru coulum koodey add akal ann // accser
     public function getResDateFormatedAttribute()
     {
-        return date('d-m-Y', strtotime($this->date_of_birth));
+        return date('d-m-Y H:i:s', strtotime($this->res_date));
     }
 
     protected $appends = ['res_date_formated'];

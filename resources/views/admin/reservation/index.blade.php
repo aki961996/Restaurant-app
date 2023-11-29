@@ -14,7 +14,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-end m-2 p-2">
                 <a href="{{route('reservation.create')}}"
-                    class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg">New
+                    class="btn btn-primary">New
                     Reservation
                 </a>
             </div>

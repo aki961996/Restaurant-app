@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex  m-2 p-2">
-                <a href="{{route('tables.index')}}" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg">Table
+                <a href="{{route('tables.index')}}" class="btn btn-primary">Table
                     Back
                 </a>
             </div>

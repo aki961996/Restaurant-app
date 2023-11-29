@@ -13,7 +13,7 @@
         @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex  m-2 p-2">
-                <a href="{{route('menu.index')}}" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg">Menu
+                <a href="{{route('menu.index')}}" class="btn btn-primary">Menu
                     Back
                 </a>
             </div>
@@ -83,7 +83,8 @@
                                     <select id="categories" name="categories[]"
                                         class="form-multiselect block w-full mt-1" multiple>
                                         @foreach ($Categories as $catgory)
-                                        <option value="{{$catgory->id}}" {{ $menu->categories->contains($catgory->id) ? 'selected' : '' }}>>{{$catgory->name}}</option>
+                                        <option value="{{$catgory->id}}" {{ $menu->categories->contains($catgory->id) ?
+                                            'selected' : '' }}>>{{$catgory->name}}</option>
                                         @endforeach
                                     </select>
 

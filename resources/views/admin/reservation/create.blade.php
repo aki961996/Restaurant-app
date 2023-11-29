@@ -13,6 +13,14 @@
                 </a>
             </div>
 
+            <div>
+                @if(session('warning'))
+                <div class="alert alert-warning">
+                    {{ session('warning') }}
+                </div>
+                @endif
+            </div>
+
 
             {{-- form --}}
 
@@ -72,7 +80,8 @@
                                 <div class="mt-1">
                                     <select id="table_id" name="table_id" class="form-multiselect block w-full mt-1">
                                         @foreach ($tables as $table)
-                                        <option value="{{$table->id}}">{{$table->name}}, (Guest:{{$table->guest_number}})
+                                        <option value="{{$table->id}}">{{$table->name}}, ({{$table->guest_number}}
+                                            Guests)
                                         </option>
                                         @endforeach
 
@@ -110,11 +119,15 @@
                                     <input type="datetime-local" name="res_date" id="res_date" autocomplete="given-name"
                                         class="block w-full mt-1">
                                 </div>
-                                @if ($errors->any())
+                                {{-- @if ($errors->any())
 
                                 <div style="color: red">{{$errors->first('res_date')}}</div>
 
-                                @endif
+                                @endif --}}
+
+                                @error('res_date')
+                                <div style="color: red">{{$message}}</div>
+                                @enderror
                             </div>
 
 

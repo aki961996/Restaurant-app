@@ -8,10 +8,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex  m-2 p-2">
-                <a href="{{route('reservation.index')}}"
-                    class="btn btn-primary">Reservation
+                <a href="{{route('reservation.index')}}" class="btn btn-primary">Reservation
                     Back
                 </a>
+            </div>
+
+
+            <div>
+                @if(session('warning'))
+                <div class="alert alert-warning">
+                    {{ session('warning') }}
+                </div>
+                @endif
             </div>
 
 
@@ -77,7 +85,7 @@
                                     <select id="table_id" name="table_id" class="form-multiselect block w-full mt-1">
                                         @foreach ($tables as $table)
                                         <option value="{{$table->id}}" @selected($reservations->table_id == $table->id)>
-                                            {{$table->name}}</option>
+                                            {{$table->name}} ({{$table->guest_number}} Guests)</option>
                                         @endforeach
 
                                     </select>

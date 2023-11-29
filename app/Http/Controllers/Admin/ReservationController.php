@@ -8,6 +8,7 @@ use App\Http\Requests\reservationStoreReq;
 use App\Http\Requests\ReservationUpStore;
 use App\Models\Reservation;
 use App\Models\Table;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -35,6 +36,33 @@ class ReservationController extends Controller
      */
     public function store(reservationStoreReq $request)
     {
+        $table = Table::findOrFail($request->table_id);
+
+
+        //gusest relate validatin msg
+        if ($request->guest_number > $table->guest_number) {
+            return back()->with('warning', 'Please choose the table base on guests.');
+        }
+
+        //phone number vlaidation
+        $telNumber = $request->tel_number;
+
+        if (!is_numeric($telNumber) || strlen($telNumber) !== 10) {
+            return back()->with('warning', 'Phone Number must be exactly 10 digits');
+        }
+
+
+        //date validation
+        $request_date = Carbon::parse($request->res_date);
+        // dd($request_date);
+        foreach ($table->reservations as $res) {
+            $reservation_date = Carbon::parse($res->res_date);
+            if ($reservation_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
+
+                return back()->with('warning', 'This Table Is reserved for this date');
+            }
+        }
+        
         Reservation::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
@@ -72,6 +100,18 @@ class ReservationController extends Controller
      */
     public function update(ReservationUpStore $request, Reservation $reservation)
     {
+
+        $telNumber = $request->tel_number;
+        if (!is_numeric($telNumber) || strlen($telNumber) !== 10) {
+            return back()->with('warning', 'Phone Number must be exactly 10 digits');
+        }
+
+        $table = Table::findOrFail($request->table_id);
+        if ($request->guest_number > $table->guest_number) {
+            return back()->with('warning', 'Please choose the table base on guests.');
+        }
+
+
         $reservation->update($request->validated());
 
         return redirect()->route('reservation.index')->with('success', 'Reservation Updated');

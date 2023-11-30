@@ -6,10 +6,12 @@ use App\Enums\TableStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\reservationStoreReq;
 use App\Http\Requests\ReservationUpStore;
+use App\Mail\ReservationAdd;
 use App\Models\Reservation;
 use App\Models\Table;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -37,6 +39,7 @@ class ReservationController extends Controller
     public function store(reservationStoreReq $request)
     {
         $table = Table::findOrFail($request->table_id);
+        // $res = Reservation::all();
 
 
         //gusest relate validatin msg
@@ -52,7 +55,7 @@ class ReservationController extends Controller
         }
 
 
-        //date validation
+        // date validation
         $request_date = Carbon::parse($request->res_date);
         // dd($request_date);
         foreach ($table->reservations as $res) {
@@ -62,8 +65,32 @@ class ReservationController extends Controller
                 return back()->with('warning', 'This Table Is reserved for this date');
             }
         }
-        
-        Reservation::create([
+
+
+        // $request_date = Carbon::parse($request->res_date);
+        // // dd($request_date);
+
+
+        // foreach ($res as $r) {
+
+        //     $reservation_date = Carbon::parse($r->res_date);
+        //     if ($reservation_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
+
+        //         return back()->with('warning', 'This Table Is reserved for this date');
+        //     }
+        // }
+
+
+        // foreach ($table->reservations as $res) {
+        //     $reservation_date = Carbon::parse($res->res_date);
+        //     if ($reservation_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
+
+        //         return back()->with('warning', 'This Table Is reserved for this date');
+        //     }
+        // }
+
+
+        $res = Reservation::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
@@ -73,6 +100,9 @@ class ReservationController extends Controller
             'table_id' => $request->table_id
 
         ]);
+
+        Mail::to($res->email)->send(new ReservationAdd($res));
+
         return redirect()->route('reservation.index')->with('success', 'Reservation Inserted');
     }
 

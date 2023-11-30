@@ -18,11 +18,14 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
-    {{--
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
-
+   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    
+    {{-- script --}}
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
 </head>
 

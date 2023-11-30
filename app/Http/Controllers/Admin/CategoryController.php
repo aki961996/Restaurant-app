@@ -114,7 +114,9 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         Storage::delete($category->image);
+        $category->menus()->detach();
+
         $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Category Deleted');
+        return redirect()->route('categories.index')->with('danger', 'Category Deleted');
     }
 }

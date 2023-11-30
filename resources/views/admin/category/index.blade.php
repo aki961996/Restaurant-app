@@ -13,10 +13,16 @@
             {{ session('success') }}
         </div>
         @endif
+
+        @if(session('danger'))
+        <div class="alert alert-danger">
+            {{ session('danger') }}
+        </div>
+        @endif
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-end m-2 p-2">
-                <a href="{{route('categories.create')}}"
-                    class="btn btn-primary">New Category
+                <a href="{{route('categories.create')}}" class="btn btn-primary">New Category
                 </a>
             </div>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

@@ -22,7 +22,7 @@
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-end m-2 p-2">
-                <a href="{{route('categories.create')}}" class="btn btn-primary">New Category
+                <a href="{{route('categories.create')}}" class="inline-flex items-center justify-center px-6 py-2 text-base font-bold leading-6 text-white bg-lime-950 rounded-full sm:w-full md:w-auto hover:bg-green-300 focus:outline-none">New Category
                 </a>
             </div>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -79,15 +79,17 @@
                             </td>
 
                             <td
-                                class="px-6 py-4 text-right font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <a href="{{route('categories.edit', $data->id)}}"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                class="px-3 py-4 text-right font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <a href="{{route('categories.edit', $data->id)}}" class="inline-flex items-center justify-center px-6 py-2 text-base font-bold leading-6 text-white bg-violet-900 rounded-full
+                                    sm:w-full md:w-auto hover:bg-red-300 focus:outline-none">Edit</a>
 
                                 <form method="POST" action="{{route('categories.destroy', $data->id) }}"
                                     onsubmit="return confirm('Are you sure?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">Delete</button>
+                                    <button
+                                        class="inline-flex items-center justify-center px-6 py-2 text-base font-bold leading-6 text-white bg-red-600 rounded-full sm:w-full md:w-auto hover:bg-green-300 focus:outline-none"
+                                        type="submit">Delete</button>
 
                                 </form>
                             </td>

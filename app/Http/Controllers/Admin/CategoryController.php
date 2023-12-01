@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryStoreReq;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Arr;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,17 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // $array = ['name' => 'Joe', 'languages' => ['PHP', 'Ruby']];
+        // $flattened = Arr::flatten($array);
+        // dd($flattened);
+
+
+
+
         $categorys = Category::latest()->paginate(7);
+
+
+
 
         return view('admin.category.index', ['categorys' => $categorys]);
     }
@@ -48,10 +59,9 @@ class CategoryController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'image' => $fileName
-
-
-
         ]);
+
+
 
         return redirect()->route('categories.index')->with('success', 'Category Inserted');
     }
@@ -85,10 +95,12 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
 
+
         $request->validate([
             'name' => 'required',
             'description' => 'required'
         ]);
+
         //$image = $category->image;
 
         if ($request->hasFile('image')) {

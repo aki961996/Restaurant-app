@@ -6,6 +6,17 @@
     </x-slot>
 
     <div class="py-12">
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        @if(session('danger'))
+        <div class="alert alert-danger">
+            {{ session('danger') }}
+        </div>
+        @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-end m-2 p-2">
                 <a href="{{route('menu.create')}}" class="btn btn-primary">New
@@ -94,10 +105,10 @@
             </div>
 
             <div class="">
-                
-                    {!! $menus->links() !!}
-                
-                </div>
+
+                {!! $menus->links() !!}
+
+            </div>
         </div>
     </div>
 </x-admin-layout>

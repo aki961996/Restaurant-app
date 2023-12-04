@@ -121,7 +121,7 @@ class ReservationController extends Controller
     {
 
         //  dd($reservation);
-        $tablez = Table::all();
+        $tablez = Table::where('status', TableStatus::Avalaible)->get();
         return view('admin.reservation.edit', ['reservations' => $reservation, 'tables' => $tablez]);
     }
 

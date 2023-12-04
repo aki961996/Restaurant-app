@@ -16,6 +16,6 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        dd($category->id);
+        return view('categories.show', ['category' => $category]);
     }
 }

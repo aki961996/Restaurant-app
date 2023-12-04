@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-    public function index()
+    public function index(Menu $menu)
     {
-        return "menu index";
+        $menu = Menu::all();
+        return view('menus.index', ['menu' => $menu]);
     }
 }

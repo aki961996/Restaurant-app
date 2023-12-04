@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\MenuController as FrontendMenuController;
 use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
+use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,7 +35,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+
+
 // frontend apis
+
+
+
+
+
+Route::get('/', [WelcomeController::class, 'index'])->name('index');
+
+
 Route::get('/categories', [FrontendCategoryController::class, 'index'])->name('fcategories.index');
 Route::get('/categories/{category}', [FrontendCategoryController::class, 'show'])->name('fcategories.show');
 Route::get('/menus', [FrontendMenuController::class, 'index'])->name('menus.index');

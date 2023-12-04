@@ -22,11 +22,7 @@ class CategoryController extends Controller
 
 
 
-
         $categorys = Category::latest()->paginate(7);
-
-
-
 
         return view('admin.category.index', ['categorys' => $categorys]);
     }

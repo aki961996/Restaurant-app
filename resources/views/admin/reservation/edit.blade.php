@@ -119,7 +119,7 @@
                                 <label for="res_date" class="block text-sm font-medium leading-6 text-gray-900">
                                     Reservation Date</label>
                                 <div class="mt-2">
-                                    <input type="text" name="res_date" id="res_date"
+                                    <input type="datetime-local" name="res_date" id="res_date"
                                         value="{{$reservations->res_date_formated}}" autocomplete="given-name"
                                         class="block w-full mt-1">
                                 </div>
@@ -158,17 +158,17 @@
                     </div>
 
                 </div>
-        </div>
+                 </div>
 
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+                 <div class="mt-6 flex items-center justify-end gap-x-6">
+                  <x-primary-button>{{ __('Save') }}</x-primary-button>
 
-        </div>
+                  </div>
 
-    </div>
+               </div>
 
 
-    </form>
+            </form>
 
     {{-- end --}}
 

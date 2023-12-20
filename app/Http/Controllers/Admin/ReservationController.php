@@ -20,7 +20,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::latest()->paginate(5);;
+        $reservations = Reservation::latest()->paginate(5);
         return view('admin.reservation.index', ['reservations' => $reservations]);
     }
 
@@ -130,15 +130,30 @@ class ReservationController extends Controller
      */
     public function update(ReservationUpStore $request, Reservation $reservation)
     {
+        $table = Table::findOrFail($request->table_id);
+
 
         $telNumber = $request->tel_number;
         if (!is_numeric($telNumber) || strlen($telNumber) !== 10) {
             return back()->with('warning', 'Phone Number must be exactly 10 digits');
         }
 
-        $table = Table::findOrFail($request->table_id);
+
         if ($request->guest_number > $table->guest_number) {
             return back()->with('warning', 'Please choose the table base on guests.');
+        }
+
+        $request_date = Carbon::parse($request->res_date);
+        // dd($request_date);
+        $reservations = $table->reservations()->where('id', '!=', $reservation->id)->get();
+
+
+        foreach ($reservations as $res) {
+            // $reservation_date = Carbon::parse($res->res_date);
+            if ($res->format('Y-m-d') == $request_date->format('Y-m-d')) {
+
+                return back()->with('warning', 'This Table Is reserved for this date');
+            }
         }
 
 

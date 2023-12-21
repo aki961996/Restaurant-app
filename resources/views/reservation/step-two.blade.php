@@ -1,13 +1,6 @@
 <x-guest-layout>
     <div class="container w-full px-5 py-6 mx-auto">
-        <div>
-            @if(session('warning'))
-            <div class="alert alert-warning">
-                {{ session('warning') }}
-            </div>
-            @endif
-        </div>
-
+    
 
 
         <div class="flex items-center justify-center p-12">
@@ -33,7 +26,8 @@
 
                                 {{-- form start --}}
 
-                                <form action="{{route('reservations.store.step.two')}}" method="POST">
+                                <form id="reservationForm" action="{{route('reservations.store.step.two')}}"
+                                    method="POST">
                                     @csrf
 
                                     <div class="space-y-12">
@@ -48,17 +42,17 @@
                                                 {{-- table --}}
 
                                                 <div class="sm:col-span-3">
-                                                    <label for="table_id"
+                                                    {{-- <label for="table_id"
                                                         class="block text-sm font-medium text-gray-700">Table</label>
                                                     <div class="mt-1">
                                                         <select id="table_id" name="table_id"
                                                             class="form-multiselect block w-full mt-1">
-                                                            {{-- @foreach ($tables as $table)
+                                                            @foreach ($tables as $table)
                                                             <option value="{{$table->id}}" @selected($reservations->
                                                                 table_id == $table->id)>
                                                                 {{$table->name}} ({{$table->guest_number}} Guests)
                                                             </option>
-                                                            @endforeach --}}
+                                                            @endforeach
 
 
                                                             @foreach ($tablez as $table)
@@ -75,8 +69,23 @@
                                                         <div style="color: red">{{$errors->first('table')}}</div>
 
                                                         @endif
-                                                    </div>
+                                                    </div> --}}
 
+                                                    <label for="table_id"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Table
+                                                        select</label>
+                                                    <select id="table_id" name="table_id"
+                                                        class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                        <option selected>Choose a Table</option>
+                                                        @foreach ($tablez as $table)
+                                                        <option value="{{ $table->id }}" @if($reservations->table_id
+                                                            == $table->id) selected @endif>{{ $table->name }} ({{
+                                                            $table->guest_number }} Guests)</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @if ($errors->any())
+                                                    <div style="color: red">{{$errors->first('table')}}</div>
+                                                    @endif
                                                 </div>
 
 
@@ -125,4 +134,40 @@
 
     </div>
 
+    {{-- <script>
+        $(document).ready(function () {
+        // Submit form via AJAX
+        $('#reservationForm').submit(function (e) {
+            e.preventDefault(); // Prevent normal form submission
+
+            // Serialize form data
+            var formData = $(this).serialize();
+
+            // Perform AJAX request
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: formData,
+                success: function (response) {
+                   Swal.fire({
+                    icon: 'success',
+                    title: 'Reservation Successful',
+                    text: 'Your reservation has been made successfully.',
+                    }).then(function () {
+                    // Redirect to the specified route
+                    window.location.href = response.redirect;
+                    });
+                },
+                error: function (error) {
+                    // Handle error with SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'There was an error submitting the form. Please try again.',
+                    });
+                }
+            });
+        });
+    });
+    </script> --}}
 </x-guest-layout>

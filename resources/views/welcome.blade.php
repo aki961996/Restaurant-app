@@ -5,7 +5,7 @@
             class="font-mono text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 md:text-center sm:leading-none lg:text-5xl">
             <span class="inline md:block">Welcome To TailFood Restaurant</span>
         </h1>
-       
+
         <div class="flex flex-col items-center mt-12 text-center">
             <span class="relative inline-flex w-full md:w-auto">
                 <a href="{{route('reservations.step.one')}}" type="button"
@@ -130,7 +130,7 @@
                         <p class="leading-normal text-gray-700">{{$menu->description}}</p>
                     </div>
                     <div class="flex items-center justify-between p-4">
-                        <button class="px-4 py-2 bg-green-600 text-green-50">Order Now</button>
+                        <button class="px-4 py-2 bg-green-600 text-green-50">Add</button>
                         <span class="text-xl text-green-600">{{$menu->price}}</span>
                     </div>
                 </div>

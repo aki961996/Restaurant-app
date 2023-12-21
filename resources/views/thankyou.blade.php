@@ -11,7 +11,7 @@
         </div>
 
         <!-- Image -->
-        <div class="flex justify-center w-full" >
+        <div class="flex justify-center w-full">
             <img src="{{asset('css/res.png')}}" alt="Reservation Image" width="500">
             <!-- Replace "path/to/your/image.jpg" with the actual path to your image -->
         </div>

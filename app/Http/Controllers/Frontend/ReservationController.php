@@ -137,5 +137,8 @@ class ReservationController extends Controller
         $request->session()->forget('reservation');
 
         return redirect()->route('thankyou')->with('success', 'Reservation Inserted');
+        // return redirect()->route('reservations.step.two')->with('success', 'Reserved');
+
+
     }
 }
